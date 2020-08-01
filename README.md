@@ -33,5 +33,15 @@
 => https://youtu.be/ieMhlyjPjWo
 ## ReactJS + Spring Boot CRUD Full Stack App - 16 - Creating Get Employee By Id REST API
 => https://youtu.be/L5SYbfkOTQA
+## ReactJS + Spring Boot CRUD Full Stack App - 17 - Creating Update Employee REST API
+=> https://youtu.be/voJAjtioNN8
+## ReactJS + Spring Boot CRUD Full Stack App - 18 - Creating React Update Employee
+=> https://youtu.be/GrIG4-lnLkQ
+## ReactJS + Spring Boot CRUD Full Stack App - 19 - Connecting React with Update Employee REST API
+=> https://youtu.be/uPCWBOrU6Vs
+## ReactJS + Spring Boot CRUD Full Stack App - 20 - Add & Update Employee with Single React Component 
+=> https://youtu.be/ksvDBGF7JRE
+## ReactJS + Spring Boot CRUD Full Stack App - 21 - Creating Delete Employee REST API 
+=> https://youtu.be/dzgixz4X1KA
 
 
