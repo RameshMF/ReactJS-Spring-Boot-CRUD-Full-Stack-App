@@ -45,4 +45,7 @@
 => https://youtu.be/dzgixz4X1KA
 #### ReactJS + Spring Boot CRUD Full Stack App - 22 - Connecting React with Delete Employee REST API
 => https://youtu.be/L6wM7x0fqZs
-
+#### ReactJS + Spring Boot CRUD Full Stack App - 23 - Creating React View Employee Component
+=> https://youtu.be/XRWnM51Cd7o
+#### ReactJS + Spring Boot CRUD Full Stack App - 24 - Design and Show Data on View Employee Page
+=> https://youtu.be/XRWnM51Cd7o
