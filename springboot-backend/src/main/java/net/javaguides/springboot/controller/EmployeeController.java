@@ -74,6 +74,13 @@ public class EmployeeController {
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
+
+	
+    @GetMapping("/get-a-quote")
+    public String returnAQuote() {
+        int randomQuoteNumber = (int) Math.floor(Math.random() * (quotes.size() - 0) + 0);
+        return quotes.get(randomQuoteNumber);
+    }
 	
 	
 }

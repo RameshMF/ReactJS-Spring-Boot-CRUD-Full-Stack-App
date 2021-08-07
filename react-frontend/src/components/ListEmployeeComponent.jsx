@@ -11,6 +11,7 @@ class ListEmployeeComponent extends Component {
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
         this.deleteEmployee = this.deleteEmployee.bind(this);
+        this.getQuote = this.getQuote.bind(this);
     }
 
     deleteEmployee(id){
@@ -35,9 +36,16 @@ class ListEmployeeComponent extends Component {
         this.props.history.push('/add-employee/_add');
     }
 
+    getQuote(){
+        this.props.history.push('/get-a-quote');
+    }
+
     render() {
         return (
+
+            
             <div>
+                 <button className="btnQuote" onClick  = {this.getQuote}> Get A Quote</button>
                  <h2 className="text-center">Employees List</h2>
                  <div className = "row">
                     <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
@@ -45,7 +53,7 @@ class ListEmployeeComponent extends Component {
                  <br></br>
                  <div className = "row">
                         <table className = "table table-striped table-bordered">
-
+                       
                             <thead>
                                 <tr>
                                     <th> Employee First Name</th>
@@ -55,7 +63,8 @@ class ListEmployeeComponent extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
+                               
+                                {   
                                     this.state.employees.map(
                                         employee => 
                                         <tr key = {employee.id}>
