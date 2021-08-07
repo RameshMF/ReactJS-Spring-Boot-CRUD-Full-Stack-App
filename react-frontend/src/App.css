@@ -46,3 +46,9 @@
   text-align: center;
   color: white;
 }
+
+.btnQuote{
+  float: right;
+  margin-top: 30px;
+  background-color: white;
+}
