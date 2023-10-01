@@ -14,9 +14,13 @@ class ListEmployeeComponent extends Component {
     }
 
     deleteEmployee(id){
+    const popup = window.confirm("Delete this user permanently?");
+    if(popup){
         EmployeeService.deleteEmployee(id).then( res => {
-            this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
-        });
+                    this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
+                });
+    }
+
     }
     viewEmployee(id){
         this.props.history.push(`/view-employee/${id}`);
@@ -57,9 +61,9 @@ class ListEmployeeComponent extends Component {
                             <tbody>
                                 {
                                     this.state.employees.map(
-                                        employee => 
+                                        employee =>
                                         <tr key = {employee.id}>
-                                             <td> { employee.firstName} </td>   
+                                             <td> { employee.firstName} </td>
                                              <td> {employee.lastName}</td>
                                              <td> {employee.emailId}</td>
                                              <td>
