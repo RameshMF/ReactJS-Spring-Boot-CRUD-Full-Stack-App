@@ -1,27 +1,48 @@
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService'
+import Popup from './Popup';
+
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-                employees: []
+                employees: [],
+                isPopupVisible: false,
+                deleteEmployeeId: null
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
         this.deleteEmployee = this.deleteEmployee.bind(this);
+        this.confirmDeleteEmployee = this.confirmDeleteEmployee.bind(this);
+        this.cancelDeleteEmployee = this.cancelDeleteEmployee.bind(this);
     }
 
-    deleteEmployee(id){
-    const popup = window.confirm("Delete this user permanently?");
-    if(popup){
-        EmployeeService.deleteEmployee(id).then( res => {
-                    this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
-                });
+    deleteEmployee(id) {
+        this.setState({
+        isPopupVisible: true,
+        deleteEmployeeId: id
+        });
     }
 
+    confirmDeleteEmployee() {
+        const id = this.state.deleteEmployeeId;
+        EmployeeService.deleteEmployee(id).then((res) => {
+            this.setState({
+                employees: this.state.employees.filter((employee) => employee.id !== id),
+                isPopupVisible: false,
+            });
+        });
     }
+    cancelDeleteEmployee() {
+        this.setState({
+            isPopupVisible: false,
+            deleteEmployeeId: null,
+        });
+    }
+
+
     viewEmployee(id){
         this.props.history.push(`/view-employee/${id}`);
     }
@@ -78,6 +99,16 @@ class ListEmployeeComponent extends Component {
                         </table>
 
                  </div>
+                 {this.state.isPopupVisible && (
+                                  <Popup
+                                      message="Delete this employee?"
+                                      onConfirm={this.confirmDeleteEmployee}
+                                      onCancel={this.cancelDeleteEmployee}
+                                      confirmText="Remove"
+                                      cancelText="No"
+
+                                  />
+                              )}
 
             </div>
         )
