@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService';
+import Popup from './Popup';
 
 class CreateEmployeeComponent extends Component {
     constructor(props) {
@@ -10,11 +11,14 @@ class CreateEmployeeComponent extends Component {
             id: this.props.match.params.id,
             firstName: '',
             lastName: '',
-            emailId: ''
+            emailId: '',
+            isPopupVisible: false,
+
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
+        this.onConfirm = this.onConfirm.bind(this);
     }
 
     // step 3
@@ -33,22 +37,33 @@ class CreateEmployeeComponent extends Component {
             });
         }        
     }
+    onConfirm(){
+        this.setState({ isPopupVisible: false });
+        this.props.history.push('/employees');
+
+    };
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
         console.log('employee => ' + JSON.stringify(employee));
+        console.log('isPopupVisible:', this.state.isPopupVisible);
 
         // step 5
         if(this.state.id === '_add'){
             EmployeeService.createEmployee(employee).then(res =>{
-                this.props.history.push('/employees');
+                this.setState({isPopupVisible: true});
+                console.log('isPopupVisible:', this.state.isPopupVisible);
+               // this.props.history.push('/employees');
+
             });
         }else{
             EmployeeService.updateEmployee(employee, this.state.id).then( res => {
-                this.props.history.push('/employees');
+                //this.props.history.push('/employees');
+                this.setState({isPopupVisible: true});
             });
         }
     }
+
     
     changeFirstNameHandler= (event) => {
         this.setState({firstName: event.target.value});
@@ -73,7 +88,8 @@ class CreateEmployeeComponent extends Component {
             return <h3 className="text-center">Update Employee</h3>
         }
     }
-    render() {
+    render()
+     {
         return (
             <div>
                 <br></br>
@@ -105,10 +121,19 @@ class CreateEmployeeComponent extends Component {
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
                                 </div>
+                                  {this.state.isPopupVisible && (
+                                                    <Popup
+                                                        message="Employee saved Successfully!!"
+                                                        confirmText="OK"
+                                                        onConfirm={this.onConfirm}
+                                                     />
+                                                   )
+                                                   }
                             </div>
                         </div>
 
                    </div>
+
             </div>
         )
     }
