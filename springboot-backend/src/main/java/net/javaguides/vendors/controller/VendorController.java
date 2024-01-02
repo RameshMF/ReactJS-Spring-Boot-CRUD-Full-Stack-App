@@ -1,6 +1,6 @@
 package net.javaguides.vendors.controller;
 
-import net.javaguides.springboot.exception.ResourceNotFoundException;
+import net.javaguides.vendors.exception.ResourceNotFoundException;
 import net.javaguides.vendors.model.Vendor;
 import net.javaguides.vendors.repository.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
