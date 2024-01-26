@@ -10,7 +10,8 @@ class CreateEmployeeComponent extends Component {
             id: this.props.match.params.id,
             firstName: '',
             lastName: '',
-            emailId: ''
+            emailId: '',
+            address: ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -28,14 +29,15 @@ class CreateEmployeeComponent extends Component {
                 let employee = res.data;
                 this.setState({firstName: employee.firstName,
                     lastName: employee.lastName,
-                    emailId : employee.emailId
+                    emailId : employee.emailId,
+                    address : employee.address
                 });
             });
         }        
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
+        let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId, address: this.state.address};
         console.log('employee => ' + JSON.stringify(employee));
 
         // step 5
@@ -61,7 +63,9 @@ class CreateEmployeeComponent extends Component {
     changeEmailHandler= (event) => {
         this.setState({emailId: event.target.value});
     }
-
+    changeAddressHandler= (event) => {
+        this.setState({address: event.target.value});
+    }
     cancel(){
         this.props.history.push('/employees');
     }
@@ -99,6 +103,11 @@ class CreateEmployeeComponent extends Component {
                                             <label> Email Id: </label>
                                             <input placeholder="Email Address" name="emailId" className="form-control" 
                                                 value={this.state.emailId} onChange={this.changeEmailHandler}/>
+                                        </div>
+                                        <div className = "form-group">
+                                            <label> Address: </label>
+                                            <input placeholder="Address" name="Address" className="form-control" 
+                                                value={this.state.address} onChange={this.changeAddressHandler}/>
                                         </div>
 
                                         <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
